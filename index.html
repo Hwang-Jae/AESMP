@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVH 지능형 제조·물류 자율운영(Autonomous Enterprise) 통합 기획안</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'Inter', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+                    },
+                    colors: {
+                        nvh: {
+                            950: '#071324',
+                            900: '#0B1E3B',
+                            800: '#13315C',
+                            700: '#1D4ED8',
+                            600: '#2563EB',
+                            500: '#3B82F6',
+                            100: '#DBEAFE',
+                            50: '#EFF6FF',
+                        },
+                        sap: {
+                            gold: '#F0AB00',
+                            blue: '#0070F2',
+                            purple: '#7854F7',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- 상단 고정 네비게이션 -->
+    <header class="sticky top-0 z-50 bg-nvh-950/95 backdrop-blur-md border-b border-slate-800 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center font-extrabold text-white shadow">
+                        NVH
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold tracking-wider text-blue-400 uppercase block">2027 Strategic Master Plan</span>
+                        <h1 class="text-sm sm:text-base font-bold tracking-tight text-white">지능형 제조·물류 자율운영(Autonomous Enterprise) 기획안</h1>
+                    </div>
+                </div>
+                <nav class="hidden lg:flex items-center space-x-1 text-xs font-medium">
+                    <a href="#macro" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">1. 산업 배경</a>
+                    <a href="#benchmark" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">2. 글로벌 벤치마킹</a>
+                    <a href="#video-proof" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">3. MFI 실증 영상</a>
+                    <a href="#factory-layout" class="px-3 py-2 rounded-lg text-emerald-300 hover:text-white hover:bg-slate-800 transition font-semibold">4. 아산 Layout·공정명세</a>
+                    <a href="#architecture" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">5. 목표 아키텍처</a>
+                    <a href="#investment" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">6. 투자 및 확장가치</a>
+                    <a href="#action-plan" class="px-3 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-500 transition shadow">7. 아산·SMATEC 실행계획</a>
+                </nav>
+                <div class="flex items-center space-x-2">
+                    <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-print"></i> <span class="hidden sm:inline">보고서 출력</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 히어로 섹션 -->
+    <section class="relative bg-gradient-to-br from-nvh-950 via-nvh-900 to-slate-900 text-white overflow-hidden py-16 sm:py-20 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-semibold mb-6">
+                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                2027 SAP INDUSTRY POV &amp; TIER-1 EMBODIED AI BENCHMARKING
+            </div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight max-w-4xl mb-6">
+                피지컬 AI(Physical AI) 도래에 따른<br class="hidden sm:block">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-emerald-300">NVH 지능형 제조·물류 오케스트레이션</span>
+            </h2>
+            <p class="text-base sm:text-lg text-slate-300 max-w-3xl leading-relaxed mb-8">
+                글로벌 자동차 부품 Tier-1 선도사 <strong>Martur Fompak International(MFI)</strong>의 자율 사내물류 및 휴머노이드 핸들링 모델을 토대로, 
+                <strong>SAP S/4HANA · EWM · Joule · VDA 5050 · SLAM AMR</strong>이 하나로 연결되는 NVH 차세대 표준 스마트 팩토리 전략을 제시합니다.
+            </p>
+
+            <!-- 핵심 기대 성과 요약 배너 -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5">
+                    <div class="text-blue-400 text-xs font-semibold uppercase tracking-wider mb-1">단순 운반 공수 절감</div>
+                    <div class="text-3xl sm:text-4xl font-extrabold text-white">-65<span class="text-xl text-blue-400">%</span></div>
+                    <p class="text-xs text-slate-400 mt-1.5">지게차·수동 대차 이송 무인화</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5">
+                    <div class="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-1">라인사이드 버퍼 면적</div>
+                    <div class="text-3xl sm:text-4xl font-extrabold text-white">-40<span class="text-xl text-emerald-400">%</span></div>
+                    <p class="text-xs text-slate-400 mt-1.5">30~45분 단위 적시 서열(JIS) 공급</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5">
+                    <div class="text-amber-400 text-xs font-semibold uppercase tracking-wider mb-1">서열·사양 오투입률</div>
+                    <div class="text-3xl sm:text-4xl font-extrabold text-white">0 <span class="text-xl text-amber-400">ppm</span></div>
+                    <p class="text-xs text-slate-400 mt-1.5">비전 식별 및 EWM 실시간 자동 컨펌</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5">
+                    <div class="text-purple-400 text-xs font-semibold uppercase tracking-wider mb-1">파일럿 ➔ 글로벌 확산</div>
+                    <div class="text-2xl sm:text-3xl font-extrabold text-white pt-1">아산 ➔ 조지아</div>
+                    <p class="text-xs text-slate-400 mt-2">클라우드 기반 글로벌 표준 롤아웃</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 메인 콘텐츠 래퍼 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
+
+        <!-- SECTION 1: 산업 배경 및 추진 당위성 -->
+        <section id="macro" class="scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 border-b border-slate-200 pb-4">
+                <div>
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">01. Macro Industry Insight (2027 SAP POV)</span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">자동차·제조 산업의 구조적 전환과 NVH 돌파 전략</h3>
+                </div>
+                <p class="text-xs text-slate-500 mt-2 md:mt-0">출처: 2027 SAP Automotive &amp; Industrial Manufacturing POV</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 카드 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <div class="w-11 h-11 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">관세 장벽 &amp; 공급망 지역화(Reshoring)</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        한-미 관세 부담(약 15%, 업계 연간 1.7조 원 추산)과 글로벌 OEM의 65%가 추진 중인 로컬 생산 재편으로 인해, 북미 조지아 등 해외 신설 거점에 <strong>최소 인력으로 가동 가능한 표준 무인 공정 패키지</strong> 이식이 필수입니다.
+                    </p>
+                    <div class="bg-slate-50 rounded-xl p-3 text-xs text-slate-700 font-medium border border-slate-100">
+                        <i class="fa-solid fa-check text-rose-500 mr-1.5"></i>국내 아산 검증 후 북미 거점 즉시 수평 전개
+                    </div>
+                </div>
+
+                <!-- 카드 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <div class="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">파워트레인 다변화 &amp; 초개인화 혼류 생산</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        BEV · HEV · EREV 혼류 생산 급증과 SDV 기반 트림 세분화로 라인사이드 부품 옵션이 폭발적으로 증가했습니다. 기존 배치(Batch) 적재 방식으로는 공간 한계와 오투입 리스크를 감당할 수 없습니다.
+                    </p>
+                    <div class="bg-slate-50 rounded-xl p-3 text-xs text-slate-700 font-medium border border-slate-100">
+                        <i class="fa-solid fa-check text-blue-500 mr-1.5"></i>서열(JIS) 기반 동적 AMR 풀(Pull) 공급 전환
+                    </div>
+                </div>
+
+                <!-- 카드 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Physical AI 실전화 &amp; AI 확장 격차 극복</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        제조업의 AI 탐색률은 98%이나 전사 실전 확장 비율은 20%에 불과합니다. 화면 속 AI를 넘어 ERP 비즈니스 로직과 물리 로봇(AMR·휴머노이드)이 직결되는 <strong>Embodied AI</strong>가 새로운 원가 초격차 기준입니다.
+                    </p>
+                    <div class="bg-slate-50 rounded-xl p-3 text-xs text-slate-700 font-medium border border-slate-100">
+                        <i class="fa-solid fa-check text-emerald-500 mr-1.5"></i>표준 프로토콜(VDA 5050) 기반 전사 확장성 확보
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: 글로벌 벤치마킹 (Martur Fompak International & 선도 기업) -->
+        <section id="benchmark" class="scroll-mt-24">
+            <div class="mb-8 border-b border-slate-200 pb-4">
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">02. Global Tier-1 Benchmarking</span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">핵심 벤치마킹 대상: Martur Fompak International (MFI)</h3>
+                <p class="text-sm text-slate-600 mt-2">
+                    튀르키예 본사의 글로벌 자동차 시트·인테리어 트림 Tier-1 공급사로, 당사와 동일한 <strong>헤드라이너 원단·라미네이션 및 내장재 혼류(JIT/JIS) 생산 구조</strong>를 보유한 핵심 벤치마킹 모델입니다.
+                </p>
+            </div>
+
+            <!-- MFI 기업 프로필 및 글로벌 레퍼런스 카드 -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
+                <div class="lg:col-span-5 bg-gradient-to-br from-nvh-900 to-slate-900 text-white rounded-2xl p-6 shadow-md flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-2.5 py-1 rounded-md bg-blue-500/20 text-blue-300 text-xs font-bold border border-blue-400/30">PRIMARY BENCHMARK</span>
+                            <span class="text-xs text-slate-400">HQ: Türkiye (Global Tier-1)</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold mb-2">Martur Fompak International</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-5">
+                            SAP S/4HANA · EWM · Joule 및 로보틱스 파트너(Humanoid) 협업을 통해 창고·라인사이드 자율 물류 및 부품 핸들링(Embodied AI) 실증을 완료하여 <strong>파일럿 임직원 만족도 80% 이상, 효율성 체감 90% 이상</strong>을 기록했습니다.
+                        </p>
+                        <div class="space-y-3 text-xs border-t border-slate-800 pt-4">
+                            <div>
+                                <span class="text-blue-400 font-bold block mb-1">■ 주요 생산 품목 (당사 H/L·내장재와 높은 유사성)</span>
+                                <p class="text-slate-300">헤드라이너용 원단·라미네이션, 완성차 시트 어셈블리(JIT), PU 몰드 폼, 도어 패널, 필러 트림, 인스트루먼트 패널(IP)</p>
+                            </div>
+                            <div>
+                                <span class="text-blue-400 font-bold block mb-1">■ 주요 완성차(OEM) 고객사</span>
+                                <p class="text-slate-300">르노(Renault Group), 스텔란티스(Stellantis), 토요타 유럽(Toyota Europe), 포드(Ford Otosan) 등 글로벌 OEM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3대 확장 벤치마킹 기업 -->
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="text-[11px] font-bold text-indigo-600 uppercase">Clean Core &amp; 제조 AI</span>
+                            <h5 class="text-base font-extrabold text-slate-900 mt-1 mb-2">John Deere</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                전 세계 56개 공장·175개 창고를 단일 S/4HANA로 통합하고, AI 기반 레이저 절단 스크랩 절감(2%→10%) 및 간접 자재 수요 예측을 자동화했습니다.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-indigo-700">
+                            시사점: 다거점 표준 템플릿 롤아웃
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="text-[11px] font-bold text-blue-600 uppercase">SAP IBP 공급망 AI</span>
+                            <h5 class="text-base font-extrabold text-slate-900 mt-1 mb-2">Kennametal</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                AI 기반 다단계 재고 최적화(MEIO)를 적용하여 3년간 재고 12% 절감, <strong>IRR 51%(투자 회수 2.3년)</strong> 및 납기 정시율 향상을 동시 달성했습니다.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-blue-700">
+                            시사점: 안전재고 슬림화 및 ROI 입증
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="text-[11px] font-bold text-emerald-600 uppercase">Catena-X &amp; 탄소추적</span>
+                            <h5 class="text-base font-extrabold text-slate-900 mt-1 mb-2">WITTE Automotive</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                ERP 데이터 기반 제품 탄소발자국(PCF) 산출을 자동화하여 산출 효율 3~5배 향상, 외부 컨설팅 비용 건당 1만 유로 절감 및 Scope 2 배출량을 98% 감축했습니다.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-emerald-700">
+                            시사점: 글로벌 OEM ESG 규제 대응
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MFI vs NVH 비교 매트릭스 테이블 -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                    <h4 class="font-bold text-slate-900 text-sm sm:text-base">Martur Fompak (MFI) vs NVH 현주소 비교 및 개선 로드맵</h4>
+                    <span class="text-xs text-slate-500 hidden sm:inline">Strategic Benchmarking Matrix</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-nvh-900 text-white">
+                                <th class="py-3.5 px-4 font-semibold">구분 영역</th>
+                                <th class="py-3.5 px-4 font-semibold">Martur Fompak (MFI)</th>
+                                <th class="py-3.5 px-4 font-semibold">NVH 현주소 (As-Is)</th>
+                                <th class="py-3.5 px-4 font-semibold">핵심 벤치마킹 포인트</th>
+                                <th class="py-3.5 px-4 font-semibold">도입 후 기대 효과 (To-Be)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr class="hover:bg-slate-50">
+                                <td class="py-3.5 px-4 font-bold text-slate-900">생산·물류 연동</td>
+                                <td class="py-3.5 px-4 text-slate-700">EWM 기반 실시간 JIS 자율 제어</td>
+                                <td class="py-3.5 px-4 text-slate-500">수동 지시 및 배치(Batch) 2~3시간분 적치</td>
+                                <td class="py-3.5 px-4 font-semibold text-blue-700">EWM ➔ VDA 5050 오케스트레이션</td>
+                                <td class="py-3.5 px-4 font-bold text-emerald-700">라인 주변 버퍼 면적 40% 감축</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="py-3.5 px-4 font-bold text-slate-900">현장 이송 하드웨어</td>
+                                <td class="py-3.5 px-4 text-slate-700">AMR 자율 이송 + 휴머노이드 로딩 실증</td>
+                                <td class="py-3.5 px-4 text-slate-500">지게차 운반 및 작업자 수동 대차 이동</td>
+                                <td class="py-3.5 px-4 font-semibold text-blue-700">SLAM AMR 서열 대차 자동 도킹·교체</td>
+                                <td class="py-3.5 px-4 font-bold text-emerald-700">단순 운반 공수 65% 절감</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="py-3.5 px-4 font-bold text-slate-900">공정 피킹·핸들링</td>
+                                <td class="py-3.5 px-4 text-slate-700">3D 비전 기반 비정형 폼·프레임 안착</td>
+                                <td class="py-3.5 px-4 text-slate-500">대형·비정형 H/L 및 부자재 수동 투입</td>
+                                <td class="py-3.5 px-4 font-semibold text-blue-700">3D 비전 + 다관절 로봇 핸드 지그 체결</td>
+                                <td class="py-3.5 px-4 font-bold text-emerald-700">근골격계 위험 제거 및 야간 무인화</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="py-3.5 px-4 font-bold text-slate-900">데이터 피드백</td>
+                                <td class="py-3.5 px-4 text-slate-700">작업 완료 즉시 SAP 실시간 자동 확정</td>
+                                <td class="py-3.5 px-4 text-slate-500">교대조 마감 시 수기/PDA 일괄 후반영</td>
+                                <td class="py-3.5 px-4 font-semibold text-blue-700">비전/센서 기반 Closed-loop Confirm</td>
+                                <td class="py-3.5 px-4 font-bold text-emerald-700">재고 오차 및 사양 오투입 0 ppm</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="py-3.5 px-4 font-bold text-slate-900">글로벌 거점 대응</td>
+                                <td class="py-3.5 px-4 text-slate-700">유럽·북아프리카 JIT 표준 팩토리</td>
+                                <td class="py-3.5 px-4 text-slate-500">북미 신설 공장 무인 표준 수립 단계</td>
+                                <td class="py-3.5 px-4 font-semibold text-blue-700">클라우드 기반 글로벌 롤아웃 템플릿</td>
+                                <td class="py-3.5 px-4 font-bold text-emerald-700">조지아 공장 즉시 수평 전개 가능</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: MFI × SAP 피지컬 AI 실증 영상 및 작업 프로세스 -->
+        <section id="video-proof" class="scroll-mt-24">
+            <div class="mb-8 border-b border-slate-200 pb-4">
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">03. Physical AI Field Proof &amp; Mechanism</span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Martur Fompak × SAP 피지컬 AI 실증 영상 및 핵심 동작</h3>
+                <p class="text-sm text-slate-600 mt-2">
+                    본 기획안의 토대가 된 MFI 현장의 SAP EWM-휴머노이드 직결 실증 영상입니다. 비정형 부품 핸들링과 실시간 ERP 전표 처리를 확인하실 수 있습니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- 유튜브 임베드 및 오류 방지(153 대응) 썸네일 런처 영역 -->
+                <div class="lg:col-span-7 bg-slate-900 rounded-2xl overflow-hidden shadow-lg border border-slate-800">
+                    <!-- 153 오류 방지: 고화질 공식 썸네일 + 새 창/팝업 즉시 재생 런처 (필요 시 인라인 전환 지원) -->
+                    <div id="videoContainer" class="relative w-full aspect-video bg-slate-950 group overflow-hidden">
+                        <img 
+                            src="https://img.youtube.com/vi/1K1phiQCftY/maxresdefault.jpg" 
+                            onerror="this.onerror=null; this.src='https://img.youtube.com/vi/1K1phiQCftY/hqdefault.jpg';"
+                            alt="Martur Fompak x SAP Embodied AI 실증 영상 썸네일" 
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-95 group-hover:scale-105 transition duration-500"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col items-center justify-center p-6 text-center">
+                            <button onclick="openYoutubePopup()" 
+                               class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-red-600 hover:bg-red-500 text-white flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition cursor-pointer mb-4 ring-4 ring-white/20"
+                               title="유튜브 실증 영상 재생">
+                                <i class="fa-solid fa-play text-2xl sm:text-3xl ml-1"></i>
+                            </button>
+                            <span class="px-3 py-1 rounded-full bg-blue-600/90 text-white text-[11px] font-bold tracking-wider uppercase mb-2">
+                                PROOF OF CONCEPT · MARTUR FOMPAK × SAP
+                            </span>
+                            <h4 class="text-white font-extrabold text-base sm:text-xl max-w-md drop-shadow">
+                                휴머노이드·AMR 자율 물류 및 SAP EWM 직결 실증 영상
+                            </h4>
+                            <p class="text-slate-300 text-xs mt-1.5 max-w-md">
+                                클릭 시 보안 차단(오류 153) 없이 전용 플레이어 창에서 고화질로 즉시 재생됩니다.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-300">
+                        <div>
+                            <span class="font-bold text-white block">Martur Fompak × SAP Embodied AI 실증 영상 (PoC)</span>
+                            <span class="text-slate-400">※ 외부 임베드 제한(오류 153) 및 사내망 환경에 대응한 전용 재생 모드 적용</span>
+                        </div>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button onclick="tryInlineEmbed()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold border border-slate-700 transition">
+                                페이지 내 삽입 시도
+                            </button>
+                            <a href="https://www.youtube.com/watch?v=1K1phiQCftY&t=1s" target="_blank" rel="noopener noreferrer" 
+                               class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold transition shadow">
+                                <i class="fa-brands fa-youtube text-sm"></i> 유튜브 새 탭 열기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 영상 속 3대 핵심 작업 영역 및 5단계 메커니즘 -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold shrink-0">01</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm sm:text-base">부품 랙 파지 및 조립 지그 정밀 로딩</h4>
+                                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                                    RGB-D &amp; 3D 비전으로 자재 랙 안 부품의 6차원 공간 자세(Pose)를 실시간 인식하여, 설비 지그 스테이션에 오차 없이 클램핑·안착합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold shrink-0">02</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm sm:text-base">비정형 유연 자재 적응형 핸들링</h4>
+                                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                                    다관절 로봇 핸드와 촉각·역각(F/T) 센서 피드백을 통해 폼 패드, 원단, 하네스 등 형태가 변하는 유연 부품(당사 H/L 유사 자재)을 손상 없이 피킹합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold shrink-0">03</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm sm:text-base">SAP EWM 실시간 자동 컨펌(Confirm-back)</h4>
+                                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                                    투입 완료 즉시 비전 식별을 통해 SAP EWM 및 MES에 완료 신호를 회신하고, S/4HANA 자재 소진 전표를 100% 자동 반영합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 (신설): 솔루션 공급사 검토용 NOS 아산공장 디지털 Layout 맵 & 현행 공정·시스템 명세 -->
+        <section id="factory-layout" class="scroll-mt-24">
+            <div class="mb-8 border-b border-slate-200 pb-4">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">04. Vendor Technical Specification &amp; Digital Layout</span>
+                    <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[11px] font-bold">SI·로봇 공급사 검토 배포용</span>
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">NOS 아산공장 디지털 레이아웃(Layout) 및 현행 제조·물류 명세</h3>
+                <p class="text-sm text-slate-600 mt-2">
+                    솔루션 파트너사가 현장의 설비 배치, 물류 흐름, 라인코드, 단말기(PDA/PC/프린터) 위치 및 ERP(NAIS)-MES 연계 구조를 한눈에 파악하여 정밀 견적과 PoC 동선을 설계할 수 있도록 도면화·데이터화한 자료입니다.
+                </p>
+            </div>
+
+            <!-- 인터랙티브 디지털 공장 레이아웃 맵 (SVG 도면) -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
+                <div class="bg-slate-900 px-6 py-4 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <h4 class="text-base font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-map-location-dot text-emerald-400"></i>
+                            NOS 아산공장(H/L) 구역별 설비 배치도 &amp; AMR 물류 동선(안)
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-0.5">도면의 각 구역(Zone)을 클릭하면 해당 구역의 라인코드, 보유 단말기(96대 중 배치 현황), AMR 적용 포인트를 확인할 수 있습니다.</p>
+                    </div>
+                    <!-- 레이어 토글 버튼 -->
+                    <div class="flex flex-wrap items-center gap-2 text-xs">
+                        <button onclick="toggleLayoutLayer('amr')" id="btnLayerAmr" class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-semibold shadow-sm transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-route"></i> <span>AMR 목표 동선 표시</span>
+                        </button>
+                        <button onclick="toggleLayoutLayer('devices')" id="btnLayerDevices" class="px-3 py-1.5 rounded-lg bg-blue-600 text-white font-semibold shadow-sm transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-desktop"></i> <span>단말기·프린터 표기</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12">
+                    <!-- 좌측: 인터랙티브 SVG 공장 도면 -->
+                    <div class="lg:col-span-8 p-4 sm:p-6 bg-slate-100/70 border-b lg:border-b-0 lg:border-r border-slate-200">
+                        <div class="bg-white rounded-xl border border-slate-300 p-3 shadow-inner overflow-x-auto">
+                            <svg id="asanLayoutSvg" viewBox="0 0 920 560" class="w-full h-auto min-w-[680px] select-none font-sans">
+                                <defs>
+                                    <!-- 그리드 패턴 -->
+                                    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+                                    </pattern>
+                                    <!-- AMR 경로 화살표 마커 -->
+                                    <marker id="arrowGreen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                        <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+                                    </marker>
+                                    <marker id="arrowBlue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                                        <path d="M 0 1 L 10 5 L 0 9 z" fill="#3b82f6"/>
+                                    </marker>
+                                </defs>
+
+                                <!-- 배경 그리드 -->
+                                <rect width="920" height="560" fill="url(#grid)" />
+
+                                <!-- 외곽 도로 및 출입구 표시 (우측 25M 도로) -->
+                                <rect x="835" y="20" width="65" height="520" rx="6" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.5"/>
+                                <text x="867" y="260" text-anchor="middle" fill="#475569" font-size="13" font-weight="700" transform="rotate(90 867,260)">외부 25M 메인 도로 (차량 진·출입)</text>
+                                
+                                <!-- 주출입구 -->
+                                <rect x="805" y="265" width="35" height="54" rx="4" fill="#fef08a" stroke="#eab308" stroke-width="1.5"/>
+                                <text x="822" y="296" text-anchor="middle" fill="#854d0e" font-size="10" font-weight="800" transform="rotate(90 822,296)">주출입구</text>
+
+                                <!-- 본관 건물 외벽 (A동/B동/C동 통합동) -->
+                                <rect x="260" y="30" width="545" height="500" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="2.5"/>
+                                <text x="275" y="52" fill="#334155" font-size="12" font-weight="800">NOS 아산 본관동 (A동 성형 · B동 가공 · C동 조립/출하)</text>
+
+                                <!-- 상단 자재/반제품 입고 및 창고 구역 -->
+                                <g onclick="selectZone('warehouse')" class="cursor-pointer group">
+                                    <rect x="280" y="65" width="505" height="62" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5" class="group-hover:fill-sky-200 transition"/>
+                                    <text x="532" y="92" text-anchor="middle" fill="#0369a1" font-size="13" font-weight="800">원자재 · 반제품 적재장 &amp; 상단 버퍼 창고 (NVH-K 반제품 입고 연계)</text>
+                                    <text x="532" y="112" text-anchor="middle" fill="#0284c7" font-size="11" font-weight="600">51PU1·52PU2 성형 완료 PLT 적재 / 원창➔현창 불출 대기 구역</text>
+                                </g>
+
+                                <!-- 우측 상단 사무실 -->
+                                <rect x="705" y="140" width="80" height="55" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+                                <text x="745" y="172" text-anchor="middle" fill="#b91c1c" font-size="12" font-weight="800">현장 사무실</text>
+
+                                <!-- ZONE A: A동 성형 라인 (51, 52라인) & 트리밍 (56라인) -->
+                                <g onclick="selectZone('zoneA')" class="cursor-pointer group">
+                                    <rect x="655" y="210" width="130" height="245" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2" class="group-hover:fill-blue-200 transition"/>
+                                    <text x="720" y="232" text-anchor="middle" fill="#1e40af" font-size="12" font-weight="800">[A동] 성형·트리밍</text>
+                                    
+                                    <!-- 51라인 -->
+                                    <rect x="668" y="245" width="104" height="52" rx="5" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+                                    <text x="720" y="266" text-anchor="middle" fill="#1e3a8a" font-size="11" font-weight="700">51라인 (4라인)</text>
+                                    <text x="720" y="283" text-anchor="middle" fill="#475569" font-size="10">51PU1 / 51PU2</text>
+
+                                    <!-- 52라인 -->
+                                    <rect x="668" y="307" width="104" height="52" rx="5" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+                                    <text x="720" y="328" text-anchor="middle" fill="#1e3a8a" font-size="11" font-weight="700">52라인 (5라인)</text>
+                                    <text x="720" y="345" text-anchor="middle" fill="#475569" font-size="10">52PU1 / 52PU2</text>
+
+                                    <!-- 56라인 -->
+                                    <rect x="668" y="369" width="104" height="44" rx="5" fill="#eff6ff" stroke="#60a5fa" stroke-width="1.2"/>
+                                    <text x="720" y="388" text-anchor="middle" fill="#1e3a8a" font-size="11" font-weight="700">56라인 (트리밍)</text>
+                                    <text x="720" y="403" text-anchor="middle" fill="#475569" font-size="10">56TR1 (PLT 식별표)</text>
+
+                                    <text x="720" y="438" text-anchor="middle" fill="#1d4ed8" font-size="10" font-weight="700">시작실 / 성형품재고</text>
+                                </g>
+
+                                <!-- ZONE B: B동 압착/트리밍(53~55), 컷팅(57), 워터젯(58), 감싸기(70) -->
+                                <g onclick="selectZone('zoneB')" class="cursor-pointer group">
+                                    <rect x="470" y="140" width="165" height="315" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2" class="group-hover:fill-amber-200 transition"/>
+                                    <text x="552" y="162" text-anchor="middle" fill="#92400e" font-size="12" font-weight="800">[B동] 가공·감싸기</text>
+
+                                    <!-- 58 워터젯 -->
+                                    <rect x="483" y="172" width="139" height="40" rx="5" fill="#ffffff" stroke="#f59e0b" stroke-width="1.2"/>
+                                    <text x="552" y="190" text-anchor="middle" fill="#78350f" font-size="11" font-weight="700">58라인 워터젯 (58WJ1)</text>
+                                    <text x="552" y="204" text-anchor="middle" fill="#64748b" font-size="9.5">차종: IGPE, DL3</text>
+
+                                    <!-- 70 감싸기 -->
+                                    <rect x="483" y="220" width="139" height="44" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+                                    <text x="552" y="239" text-anchor="middle" fill="#92400e" font-size="11" font-weight="800">70라인 감싸기 (70CO1)</text>
+                                    <text x="552" y="254" text-anchor="middle" fill="#b45309" font-size="9.5">전차종 통합 · PDA LOT 발행</text>
+
+                                    <!-- 53, 54, 55 압착/트리밍 -->
+                                    <rect x="483" y="272" width="139" height="62" rx="5" fill="#ffffff" stroke="#f59e0b" stroke-width="1.2"/>
+                                    <text x="552" y="291" text-anchor="middle" fill="#78350f" font-size="11" font-weight="700">53·54·55 압착/트리밍</text>
+                                    <text x="552" y="307" text-anchor="middle" fill="#475569" font-size="10">53TR1 / 54TR1 / 55TR1</text>
+                                    <text x="552" y="322" text-anchor="middle" fill="#64748b" font-size="9.5">1·2·3 라인 트리밍 공정</text>
+
+                                    <!-- 57 컷팅 -->
+                                    <rect x="483" y="342" width="139" height="42" rx="5" fill="#ffffff" stroke="#f59e0b" stroke-width="1.2"/>
+                                    <text x="552" y="360" text-anchor="middle" fill="#78350f" font-size="11" font-weight="700">57라인 컷팅 (57CT1)</text>
+                                    <text x="552" y="374" text-anchor="middle" fill="#64748b" font-size="9.5">차종: IG, HM, JF</text>
+
+                                    <!-- 구 IG 셔틀라인 / Future Area -->
+                                    <rect x="483" y="394" width="139" height="48" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-dasharray="3,3"/>
+                                    <text x="552" y="415" text-anchor="middle" fill="#475569" font-size="10" font-weight="700">구 IG 셔틀라인 / FUTURE AREA</text>
+                                    <text x="552" y="430" text-anchor="middle" fill="#64748b" font-size="9.5">(110평 여유 공간 - AMR 충전/버퍼 후보)</text>
+                                </g>
+
+                                <!-- ZONE C: C동 펀칭·조립(71, 72라인) & 완제품 출하장 -->
+                                <g onclick="selectZone('zoneC')" class="cursor-pointer group">
+                                    <rect x="280" y="140" width="170" height="315" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2" class="group-hover:fill-emerald-200 transition"/>
+                                    <text x="365" y="162" text-anchor="middle" fill="#166534" font-size="12" font-weight="800">[C동] 펀칭·조립·출하</text>
+
+                                    <!-- 71, 72 펀칭 -->
+                                    <rect x="292" y="172" width="146" height="48" rx="5" fill="#ffffff" stroke="#22c55e" stroke-width="1.2"/>
+                                    <text x="365" y="191" text-anchor="middle" fill="#14532d" font-size="11" font-weight="700">71·72 펀칭 (71PN1)</text>
+                                    <text x="365" y="207" text-anchor="middle" fill="#475569" font-size="9.5">하나정보(P/G) + MES I/F 터치단말</text>
+
+                                    <!-- 71, 72 조립 -->
+                                    <rect x="292" y="228" width="146" height="68" rx="5" fill="#ffffff" stroke="#16a34a" stroke-width="1.5"/>
+                                    <text x="365" y="248" text-anchor="middle" fill="#14532d" font-size="11" font-weight="800">71·72 조립라인 (핵심 PoC)</text>
+                                    <text x="365" y="265" text-anchor="middle" fill="#15803d" font-size="10" font-weight="600">71AS1(BD/DE) · 72AS1(IGPE/DL3)</text>
+                                    <text x="365" y="281" text-anchor="middle" fill="#475569" font-size="9.5">72PA1 (JF 연동생산)</text>
+
+                                    <!-- 반제품 자재적재장 & 완제품 출하장 -->
+                                    <rect x="292" y="306" width="146" height="136" rx="5" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+                                    <text x="365" y="328" text-anchor="middle" fill="#166534" font-size="11" font-weight="800">완제품 적재 및 출하장</text>
+                                    <text x="365" y="348" text-anchor="middle" fill="#334155" font-size="10">대상 차종: BD, DE, DL3,</text>
+                                    <text x="365" y="364" text-anchor="middle" fill="#334155" font-size="10">IG, JF 직서열·비서열 출하</text>
+                                    <rect x="304" y="380" width="122" height="48" rx="4" fill="#bbf7d0"/>
+                                    <text x="365" y="401" text-anchor="middle" fill="#14532d" font-size="10" font-weight="800">출하단말기 &amp; 이종체크</text>
+                                    <text x="365" y="416" text-anchor="middle" fill="#166534" font-size="9">JIS I/F · 파렛트 Bucket 생성</text>
+                                </g>
+
+                                <!-- ZONE D: 좌측 증축동 2F (A동 2층 - 73라인 HM) -->
+                                <g onclick="selectZone('zoneD')" class="cursor-pointer group">
+                                    <rect x="25" y="190" width="175" height="340" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class="group-hover:fill-purple-200 transition"/>
+                                    <text x="112" y="215" text-anchor="middle" fill="#5b21b6" font-size="12" font-weight="800">[증축동 2F / A동 2층]</text>
+                                    <text x="112" y="233" text-anchor="middle" fill="#6d28d9" font-size="11" font-weight="700">HM 전용 생산·출하 구역</text>
+
+                                    <rect x="40" y="248" width="145" height="65" rx="6" fill="#ffffff" stroke="#8b5cf6" stroke-width="1.2"/>
+                                    <text x="112" y="272" text-anchor="middle" fill="#4c1d95" font-size="11" font-weight="800">HM 완제품 출하장</text>
+                                    <text x="112" y="290" text-anchor="middle" fill="#64748b" font-size="10">자재적재장 좌·우 배치</text>
+
+                                    <rect x="40" y="325" width="145" height="90" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+                                    <text x="112" y="348" text-anchor="middle" fill="#4c1d95" font-size="11" font-weight="800">73라인 (차종: HM)</text>
+                                    <text x="112" y="366" text-anchor="middle" fill="#5b21b6" font-size="10" font-weight="600">• 73CO1 (감싸기 - PDA)</text>
+                                    <text x="112" y="383" text-anchor="middle" fill="#5b21b6" font-size="10" font-weight="600">• 73PA1 (펀칭/조립 - 단말)</text>
+                                    <text x="112" y="401" text-anchor="middle" fill="#dc2626" font-size="9.5" font-weight="700">※ P/G 수정 검토 대상</text>
+
+                                    <!-- 연결 브릿지/리프트 표시 -->
+                                    <rect x="200" y="330" width="60" height="44" rx="4" fill="#ddd6fe" stroke="#7c3aed" stroke-dasharray="3,2"/>
+                                    <text x="230" y="350" text-anchor="middle" fill="#5b21b6" font-size="9.5" font-weight="800">연결 통로</text>
+                                    <text x="230" y="364" text-anchor="middle" fill="#6d28d9" font-size="9">/ 화물 리프트</text>
+                                </g>
+
+                                <!-- 레이어 1: AMR 목표 물류 이송 동선 (토글 가능) -->
+                                <g id="layerAmr">
+                                    <!-- 메인 물류 통로 가이드라인 -->
+                                    <path d="M 720 127 L 720 198 L 552 198 L 552 127" fill="none" stroke="#10b981" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrowGreen)"/>
+                                    <path d="M 552 455 L 552 485 L 365 485 L 365 445" fill="none" stroke="#10b981" stroke-width="3.5" marker-end="url(#arrowGreen)"/>
+                                    <path d="M 655 330 L 638 330" fill="none" stroke="#10b981" stroke-width="3" marker-end="url(#arrowGreen)"/>
+                                    <path d="M 470 260 L 442 260" fill="none" stroke="#10b981" stroke-width="3.5" marker-end="url(#arrowGreen)"/>
+                                    
+                                    <!-- AMR 아이콘 뱃지 -->
+                                    <g transform="translate(435, 470)">
+                                        <rect x="0" y="0" width="115" height="28" rx="14" fill="#059669" stroke="#ffffff" stroke-width="1.5"/>
+                                        <text x="57" y="18" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="800">AMR 주행 메인 통로</text>
+                                    </g>
+                                </g>
+
+                                <!-- 레이어 2: 현장 단말기 및 바코드/레이저 프린터 배치 마커 (토글 가능) -->
+                                <g id="layerDevices">
+                                    <!-- A동 단말 마커 -->
+                                    <circle cx="680" cy="255" r="9" fill="#2563eb"/><text x="680" y="259" text-anchor="middle" fill="#fff" font-size="9" font-weight="800">M</text>
+                                    <circle cx="760" cy="255" r="9" fill="#ef4444"/><text x="760" y="259" text-anchor="middle" fill="#fff" font-size="9" font-weight="800">S</text>
+                                    
+                                    <!-- B동 단말 마커 -->
+                                    <circle cx="495" cy="232" r="9" fill="#1e293b"/><text x="495" y="236" text-anchor="middle" fill="#fff" font-size="8" font-weight="800">PDA</text>
+                                    <circle cx="608" cy="232" r="9" fill="#16a34a"/><text x="608" y="236" text-anchor="middle" fill="#fff" font-size="9" font-weight="800">B</text>
+                                    
+                                    <!-- C동 단말 마커 -->
+                                    <circle cx="305" cy="240" r="9" fill="#2563eb"/><text x="305" y="244" text-anchor="middle" fill="#fff" font-size="9" font-weight="800">M</text>
+                                    <circle cx="425" cy="240" r="9" fill="#0d9488"/><text x="425" y="244" text-anchor="middle" fill="#fff" font-size="9" font-weight="800">R</text>
+                                    <circle cx="305" cy="395" r="9" fill="#16a34a"/><text x="305" y="399" text-anchor="middle" fill="#fff" font-size="9" font-weight="800">B</text>
+
+                                    <!-- 증축동 단말 마커 -->
+                                    <circle cx="55" cy="360" r="9" fill="#1e293b"/><text x="55" y="364" text-anchor="middle" fill="#fff" font-size="8" font-weight="800">PDA</text>
+                                    <circle cx="170" cy="380" r="9" fill="#0d9488"/><text x="170" y="384" text-anchor="middle" fill="#fff" font-size="9" font-weight="800">R</text>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <!-- 범례 (Legend) -->
+                        <div class="flex flex-wrap items-center justify-between gap-3 mt-3 px-1 text-[11px] text-slate-600">
+                            <div class="flex flex-wrap items-center gap-3">
+                                <span class="flex items-center gap-1"><span class="w-4 h-4 rounded-full bg-slate-800 text-white text-[8px] font-bold inline-flex items-center justify-center">PDA</span> 무선 PDA (15대)</span>
+                                <span class="flex items-center gap-1"><span class="w-4 h-4 rounded-full bg-blue-600 text-white text-[9px] font-bold inline-flex items-center justify-center">M</span> 터치모니터 (21대)</span>
+                                <span class="flex items-center gap-1"><span class="w-4 h-4 rounded-full bg-green-600 text-white text-[9px] font-bold inline-flex items-center justify-center">B</span> 바코드프린터 (11대)</span>
+                                <span class="flex items-center gap-1"><span class="w-4 h-4 rounded-full bg-teal-600 text-white text-[9px] font-bold inline-flex items-center justify-center">R</span> 레이저프린터 (22대)</span>
+                                <span class="flex items-center gap-1"><span class="w-4 h-4 rounded-full bg-red-500 text-white text-[9px] font-bold inline-flex items-center justify-center">S</span> 스캐너 (9대)</span>
+                            </div>
+                            <span class="font-semibold text-slate-700">아산공장 전산장비 총 96대 운영 중</span>
+                        </div>
+                    </div>
+
+                    <!-- 우측: 선택한 구역(Zone) 상세 스펙 및 업체 검토 가이드 패널 -->
+                    <div class="lg:col-span-4 p-6 bg-white flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span id="zoneBadge" class="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800 text-xs font-extrabold">ZONE C · 핵심 PoC 후보 구역</span>
+                                <span class="text-xs text-slate-400">구역 클릭 시 변경</span>
+                            </div>
+                            <h5 id="zoneTitle" class="text-lg font-extrabold text-slate-900 mb-2">[C동] 펀칭 · 조립 · 완제품 출하 구역</h5>
+                            <p id="zoneDesc" class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                                B동(감싸기·워터젯·트리밍)에서 가공된 반제품이 집결하여 최종 조립(71AS1, 72AS1, 72PA1) 및 OEM 직서열(JIS)·비서열 출하가 이루어지는 아산공장 물류 핵심 구간입니다.
+                            </p>
+
+                            <div class="space-y-3">
+                                <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200">
+                                    <div class="text-xs font-bold text-slate-800 mb-1.5"><i class="fa-solid fa-barcode text-blue-600 mr-1.5"></i>소속 라인코드 및 공정 방식</div>
+                                    <ul id="zoneLines" class="text-xs text-slate-600 space-y-1">
+                                        <li>• <strong>71PN1 (펀칭):</strong> BD, DE 차종 / 하나정보 P/G + MES I/F</li>
+                                        <li>• <strong>71AS1 (조립):</strong> BD, DE 완제품 조립 실적</li>
+                                        <li>• <strong>72AS1 (조립):</strong> IGPE, DL3 (워터젯 품번 연계 조립)</li>
+                                        <li>• <strong>72PA1 (펀칭/조립):</strong> JF 차종 연동생산</li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-emerald-50/70 rounded-xl p-3.5 border border-emerald-200">
+                                    <div class="text-xs font-bold text-emerald-900 mb-1.5"><i class="fa-solid fa-robot text-emerald-600 mr-1.5"></i>SI·로봇 업체 핵심 검토 포인트</div>
+                                    <p id="zoneVendorCheck" class="text-xs text-emerald-800 leading-relaxed">
+                                        ① B동(70CO1 감싸기) ➔ C동(71·72 조립라인) 간 반제품 서열 대차 AMR 무인 이송 동선 및 통로 폭 실측<br>
+                                        ② 완제품 출하장 파렛트(PLT) 적재 및 JIS 이종체크 구간 무인화 연계
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 빠른 구역 선택 버튼 -->
+                        <div class="mt-6 pt-4 border-t border-slate-100">
+                            <div class="text-[11px] font-bold text-slate-400 uppercase mb-2">구역 바로보기</div>
+                            <div class="grid grid-cols-3 gap-1.5 text-xs">
+                                <button onclick="selectZone('zoneA')" class="py-1.5 px-2 rounded bg-blue-50 hover:bg-blue-100 text-blue-800 font-semibold transition">A동 성형</button>
+                                <button onclick="selectZone('zoneB')" class="py-1.5 px-2 rounded bg-amber-50 hover:bg-amber-100 text-amber-800 font-semibold transition">B동 가공</button>
+                                <button onclick="selectZone('zoneC')" class="py-1.5 px-2 rounded bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold transition">C동 조립</button>
+                                <button onclick="selectZone('zoneD')" class="py-1.5 px-2 rounded bg-purple-50 hover:bg-purple-100 text-purple-800 font-semibold transition">증축동 2F</button>
+                                <button onclick="selectZone('warehouse')" class="py-1.5 px-2 rounded bg-sky-50 hover:bg-sky-100 text-sky-800 font-semibold col-span-2 transition">상단 자재/반제품 적재장</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 업체 배포용 3대 기술 명세 탭 (공정 라우팅 / 라인코드 마스터 / ERP-MES-RFP 체크리스트) -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="flex flex-wrap border-b border-slate-200 bg-slate-50 px-4 pt-3 gap-2">
+                    <button onclick="switchSpecTab('tabRouting')" id="btn-tabRouting" class="spec-tab-btn px-4 py-2.5 rounded-t-xl text-xs sm:text-sm font-bold bg-white text-blue-700 border-t border-x border-slate-200 -mb-px">
+                        1. 차종별 표준 공정 라우팅 &amp; 바코드 흐름
+                    </button>
+                    <button onclick="switchSpecTab('tabLines')" id="btn-tabLines" class="spec-tab-btn px-4 py-2.5 rounded-t-xl text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900">
+                        2. 아산·전사 라인코드 및 IT 인프라 마스터
+                    </button>
+                    <button onclick="switchSpecTab('tabErpRfp')" id="btn-tabErpRfp" class="spec-tab-btn px-4 py-2.5 rounded-t-xl text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900">
+                        3. NOS ERP(NAIS)·MES 연계 및 업체 필수 확인사항(RFP)
+                    </button>
+                </div>
+
+                <!-- TAB 1: 차종별 공정 라우팅 -->
+                <div id="tabRouting" class="spec-tab-panel p-6 space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
+                            <h5 class="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-blue-600 text-white text-xs">우선 대상</span>
+                                NOS 아산공장 차종별 공정 흐름 (Routing)
+                            </h5>
+                            <div class="space-y-3 text-xs">
+                                <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                    <div class="font-bold text-blue-800 mb-1">① IGPE (현대 그랜저 등)</div>
+                                    <div class="font-mono text-slate-700">성형(PU) ➔ 컷팅(CT) ➔ 압착/트리밍(TR) ➔ 워터젯(WJ) ➔ 감싸기(CO) ➔ 조립(AS) ➔ 생산실적</div>
+                                </div>
+                                <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                    <div class="font-bold text-blue-800 mb-1">② DL3 (기아 K5 등)</div>
+                                    <div class="font-mono text-slate-700">성형(PU) ➔ 압착(TR) ➔ 워터젯(WJ) ➔ 감싸기(CO) ➔ 조립(AS) ➔ 생산실적</div>
+                                </div>
+                                <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                    <div class="font-bold text-blue-800 mb-1">③ BD, DE (아반떼/니로 등)</div>
+                                    <div class="font-mono text-slate-700">성형(PU) ➔ 압착/트리밍(TR) ➔ 감싸기(CO) ➔ 펀칭(PN) ➔ 조립(AS) ➔ 생산실적</div>
+                                </div>
+                                <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                    <div class="font-bold text-blue-800 mb-1">④ JF, HM (K5 구형/증축동 전용)</div>
+                                    <div class="font-mono text-slate-700">성형(PU) ➔ 컷팅(CT) ➔ 압착/트리밍(TR) ➔ 감싸기(CO) ➔ 펀칭(PN) ➔ 조립(AS) ➔ 생산실적</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
+                                <h5 class="font-bold text-slate-900 text-sm mb-3">타 거점(울산 · 광주) 표준 공정 (수평 전개 참고용)</h5>
+                                <ul class="space-y-2 text-xs text-slate-700">
+                                    <li>• <strong>울산 1·2층 (TL, PD, AE, TQ, AD, DH, JX1, RG3, QX, HR, FE):</strong><br>
+                                        <span class="text-slate-500">GH신소재(발포/재단) ➔ NVH-K(성형/압착) ➔ NOS 울산(감싸기 CO ➔ 펀칭 PN/조립 PA ➔ 생산실적)</span>
+                                    </li>
+                                    <li>• <strong>광주 (QL):</strong><br>
+                                        <span class="text-slate-500">성형(PU) ➔ 컷팅(CT) ➔ 압착/트리밍(TR) ➔ 감싸기(CO) ➔ 펀칭(PN) ➔ 조립(AS) ➔ 생산실적</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-amber-50 rounded-xl p-5 border border-amber-200">
+                                <h5 class="font-bold text-amber-900 text-sm mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-qrcode text-amber-600"></i> 현행 공정 바코드 리딩 &amp; 단말기 제어 로직
+                                </h5>
+                                <ul class="space-y-1.5 text-xs text-amber-900">
+                                    <li>• <strong>감싸기(O) 경유 시:</strong> 작업완료 PLT 리딩 ➔ 펀칭품번 리딩 ➔ 작업시작</li>
+                                    <li>• <strong>감싸기(X) 미경유 시:</strong> NVH-K 반제품 리딩 ➔ 펀칭품번 리딩 ➔ 작업시작</li>
+                                    <li>• <strong>펀칭 화면 제어:</strong> 현재 펀칭기(하나정보 P/G) + MES 동시 사용 ➔ <strong>터치모니터 기반 통합 I/F</strong> 적용 중</li>
+                                    <li>• <strong>성형(51PU, 52PU) 특징:</strong> 개별 바코드 프린트 없이 <strong>PLT(파렛트) 단위 식별표</strong> 발행·관리</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: 라인코드 및 전산장비 마스터 -->
+                <div id="tabLines" class="spec-tab-panel hidden p-6 space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <!-- 아산공장 라인코드 마스터 테이블 -->
+                        <div class="lg:col-span-8 overflow-x-auto border border-slate-200 rounded-xl">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead>
+                                    <tr class="bg-slate-800 text-white">
+                                        <th class="py-2.5 px-3">구역</th>
+                                        <th class="py-2.5 px-3">라인</th>
+                                        <th class="py-2.5 px-3">차종</th>
+                                        <th class="py-2.5 px-3">공정</th>
+                                        <th class="py-2.5 px-3">라인코드</th>
+                                        <th class="py-2.5 px-3">작업방식</th>
+                                        <th class="py-2.5 px-3">특이사항 (업체 검토용)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200">
+                                    <tr><td class="py-2 px-3 font-bold" rowspan="3">A동</td><td class="py-2 px-3">51</td><td class="py-2 px-3">성형</td><td class="py-2 px-3">프레스 1·2</td><td class="py-2 px-3 font-mono font-bold text-blue-700">51PU1, 51PU2</td><td class="py-2 px-3">단말기</td><td class="py-2 px-3 text-rose-600 font-medium">바코드 프린트 없음 / PLT 식별표 발행</td></tr>
+                                    <tr><td class="py-2 px-3">52</td><td class="py-2 px-3">성형</td><td class="py-2 px-3">프레스 1·2</td><td class="py-2 px-3 font-mono font-bold text-blue-700">52PU1, 52PU2</td><td class="py-2 px-3">단말기</td><td class="py-2 px-3 text-rose-600 font-medium">PLT 식별표 발행 (대차/파렛트 단위 이송)</td></tr>
+                                    <tr><td class="py-2 px-3">56</td><td class="py-2 px-3">트리밍</td><td class="py-2 px-3">4라인</td><td class="py-2 px-3 font-mono font-bold text-blue-700">56TR1</td><td class="py-2 px-3">단말기</td><td class="py-2 px-3 text-slate-500">-</td></tr>
+                                    <tr class="bg-slate-50"><td class="py-2 px-3 font-bold" rowspan="4">B동</td><td class="py-2 px-3">53~55</td><td class="py-2 px-3">압착/트리밍</td><td class="py-2 px-3">1·2·3라인</td><td class="py-2 px-3 font-mono font-bold text-amber-700">53TR1~55TR1</td><td class="py-2 px-3">단말기</td><td class="py-2 px-3 text-slate-500">라인별 트리밍 공정</td></tr>
+                                    <tr class="bg-slate-50"><td class="py-2 px-3">57</td><td class="py-2 px-3">ALL</td><td class="py-2 px-3">컷팅</td><td class="py-2 px-3 font-mono font-bold text-amber-700">57CT1</td><td class="py-2 px-3">단말기</td><td class="py-2 px-3 text-slate-600">대상: IG, HM, JF</td></tr>
+                                    <tr class="bg-slate-50"><td class="py-2 px-3">58</td><td class="py-2 px-3">워터젯</td><td class="py-2 px-3">OEM</td><td class="py-2 px-3 font-mono font-bold text-amber-700">58WJ1</td><td class="py-2 px-3">단말기</td><td class="py-2 px-3 text-slate-600">대상: IGPE, DL3 (PLC 연계 필요)</td></tr>
+                                    <tr class="bg-slate-50"><td class="py-2 px-3">70</td><td class="py-2 px-3">ALL</td><td class="py-2 px-3">감싸기</td><td class="py-2 px-3 font-mono font-bold text-amber-700">70CO1</td><td class="py-2 px-3 font-bold text-slate-900">PDA</td><td class="py-2 px-3 text-blue-700 font-medium">전차종 통합 공정 / LOT 바코드 출력</td></tr>
+                                    <tr><td class="py-2 px-3 font-bold" rowspan="2">C동</td><td class="py-2 px-3">71</td><td class="py-2 px-3">BD, DE</td><td class="py-2 px-3">펀칭 / 조립</td><td class="py-2 px-3 font-mono font-bold text-emerald-700">71PN1, 71AS1</td><td class="py-2 px-3">단말기</td><td class="py-2 px-3 text-slate-600">완제품 조립 실적 (AMR 공급 타깃)</td></tr>
+                                    <tr><td class="py-2 px-3">72</td><td class="py-2 px-3">IGPE, DL3, JF</td><td class="py-2 px-3">조립 / 펀칭조립</td><td class="py-2 px-3 font-mono font-bold text-emerald-700">72AS1, 72PA1</td><td class="py-2 px-3">단말기</td><td class="py-2 px-3 text-slate-600">72AS1(워터젯 연계), 72PA1(JF 연동생산)</td></tr>
+                                    <tr class="bg-purple-50/40"><td class="py-2 px-3 font-bold">A동 2F</td><td class="py-2 px-3">73</td><td class="py-2 px-3">HM</td><td class="py-2 px-3">감싸기 / 조립</td><td class="py-2 px-3 font-mono font-bold text-purple-700">73CO1, 73PA1</td><td class="py-2 px-3">PDA / 단말</td><td class="py-2 px-3 text-rose-600 font-medium">증축동 2층 배치 / 프로그램 수정 검토</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- 거점별 번호체계 & 현장 전산장비 보유현황 -->
+                        <div class="lg:col-span-4 space-y-4">
+                            <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                                <h5 class="font-bold text-slate-900 text-xs mb-2">전 공장 라인코드 넘버링 규칙</h5>
+                                <div class="grid grid-cols-3 gap-2 text-center text-xs mb-3">
+                                    <div class="bg-white p-2 rounded border border-slate-200"><div class="text-slate-400 text-[10px]">울산</div><div class="font-bold text-slate-800">01 ~ 49</div></div>
+                                    <div class="bg-blue-50 p-2 rounded border border-blue-200"><div class="text-blue-500 text-[10px]">아산(우선)</div><div class="font-extrabold text-blue-800">50 ~ 79</div></div>
+                                    <div class="bg-white p-2 rounded border border-slate-200"><div class="text-slate-400 text-[10px]">광주</div><div class="font-bold text-slate-800">80 ~ 99</div></div>
+                                </div>
+                                <div class="text-[11px] text-slate-600 space-y-1">
+                                    <div>• <strong>공정코드:</strong> WJ(워터젯), CO(감싸기), PN(펀칭), AS(조립), PA(펀칭/조립 연동)</div>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                                <h5 class="font-bold text-slate-900 text-xs mb-2">아산공장 현장 단말·프린터 보유 현황 (총 96대)</h5>
+                                <div class="grid grid-cols-2 gap-2 text-xs">
+                                    <div class="bg-white px-3 py-2 rounded border border-slate-200 flex justify-between"><span>무선 PDA</span><strong class="text-blue-700">11대 (+스페어4)</strong></div>
+                                    <div class="bg-white px-3 py-2 rounded border border-slate-200 flex justify-between"><span>터치모니터</span><strong class="text-slate-900">22대</strong></div>
+                                    <div class="bg-white px-3 py-2 rounded border border-slate-200 flex justify-between"><span>레이저프린터</span><strong class="text-slate-900">21대</strong></div>
+                                    <div class="bg-white px-3 py-2 rounded border border-slate-200 flex justify-between"><span>바코드프린터</span><strong class="text-slate-900">11대</strong></div>
+                                    <div class="bg-white px-3 py-2 rounded border border-slate-200 flex justify-between"><span>미니 PC / RACK</span><strong class="text-slate-900">9대 / 9대</strong></div>
+                                    <div class="bg-white px-3 py-2 rounded border border-slate-200 flex justify-between"><span>스캐너 / 세트</span><strong class="text-slate-900">9대 / 4대</strong></div>
+                                </div>
+                                <p class="text-[11px] text-slate-500 mt-2">※ 전사(울산1·2층/물류/아산/광주) 총 254대 운영 중</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: NOS ERP(NAIS) - MES 연계 및 업체 RFP 체크리스트 -->
+                <div id="tabErpRfp" class="spec-tab-panel hidden p-6 space-y-6">
+                    <!-- 시스템 연계 아키텍처 요약 -->
+                    <div class="bg-slate-900 text-white rounded-xl p-5">
+                        <h5 class="text-sm font-bold text-blue-300 mb-3">현행 NOS ERP(NAIS) ↔ Interface ↔ 현장 MES/PDA 데이터 흐름</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+                            <div class="bg-slate-800 p-3.5 rounded-lg border border-slate-700">
+                                <div class="font-bold text-amber-400 mb-1">1. 고객사 OEM System</div>
+                                <p class="text-slate-300">고객사 생산계획, 검수정보, 납품계획, <strong>직서열(JIS) 정보</strong> 송신</p>
+                            </div>
+                            <div class="bg-slate-800 p-3.5 rounded-lg border border-slate-700">
+                                <div class="font-bold text-blue-400 mb-1">2. NOS ERP (NAIS)</div>
+                                <p class="text-slate-300">생산·발주·납품계획 수립, 수불부 취합, 출하지시, 매입·매출 마감</p>
+                            </div>
+                            <div class="bg-slate-800 p-3.5 rounded-lg border border-slate-700">
+                                <div class="font-bold text-purple-400 mb-1">3. Interface 허브</div>
+                                <p class="text-slate-300">생산계획/실적, 자재입·출고, 제품출고, 마감확정 양방향 I/F (더존 I-Cube 전표 연동)</p>
+                            </div>
+                            <div class="bg-slate-800 p-3.5 rounded-lg border border-slate-700">
+                                <div class="font-bold text-emerald-400 mb-1">4. 현장 MES &amp; PDA</div>
+                                <p class="text-slate-300">POP 생산계획/실적, 납입카드 스캔 자재불출, JIS 파렛트 Bucket 생성·이종체크</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 피지컬 AI 구축을 위한 4대 업체 기술 검토 요청사항 (RFP) -->
+                    <div>
+                        <h5 class="font-bold text-slate-900 text-sm mb-3">솔루션 파트너사(AMR · FMS · 비전 로보틱스) 필수 검토 및 제안 요청사항</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+                                <div class="font-bold text-blue-800 mb-1">① 원창(자재창고) ↔ 현창(현장창고) 무인 불출 및 FIFO 자동화</div>
+                                <p class="text-slate-600 leading-relaxed">
+                                    현행 납입카드 스캔 기반 불출 시 선입선출(FIFO) 관리 한계를 개선하기 위해, <strong>AMR 이송 시 바코드/RFID 자동 스캔으로 원창➔현창 이동 및 생산실적 BOM 차감을 자동화</strong>하는 인터페이스 방안 제시 필요.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+                                <div class="font-bold text-blue-800 mb-1">② 성형 PLT 식별표 및 공정별 개별바코드 비전/스캔 인식</div>
+                                <p class="text-slate-600 leading-relaxed">
+                                    51·52 성형라인의 PLT 단위 식별표와 감싸기(70CO1) LOT 바코드를 로봇/AMR 도킹 시점에 자동 인식하여 <strong>이종 혼입 차단 및 반제품 Location 추적</strong>이 가능한 비전·리더기 구성 제안.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+                                <div class="font-bold text-blue-800 mb-1">③ 출하장 JIS 파렛트 Bucket 생성 및 이종체크 연계</div>
+                                <p class="text-slate-600 leading-relaxed">
+                                    C동 완제품 출하장의 JIS(직서열) 파렛트 적재 및 출하검사·이종체크 구간에서 <strong>AMR 대차 자동 공급·회수 및 비서열(JIT)/Glovis 출하 물량 분리 이송</strong> 시나리오 설계.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+                                <div class="font-bold text-blue-800 mb-1">④ 현행 MES / NAIS ERP ↔ VDA 5050 미들웨어 표준 연동</div>
+                                <p class="text-slate-600 leading-relaxed">
+                                    향후 그룹 표준 SAP S/4HANA·EWM 고도화를 고려하여, <strong>현행 NOS MES/Interface와 1차 연동하면서도 VDA 5050 표준 프로토콜을 준수</strong>해 향후 SAP EWM으로 무중단 전환 가능한 아키텍처 제안.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: NVH 목표 아키텍처 & 6단계 실행 프로세스 + 인터랙티브 VDA 5050 시뮬레이터 -->
+        <section id="architecture" class="scroll-mt-24">
+            <div class="mb-8 border-b border-slate-200 pb-4">
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">05. Target Architecture &amp; Execution Flow</span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">NVH 5계층 자율 엔터프라이즈 아키텍처 및 상세 프로세스</h3>
+                <p class="text-sm text-slate-600 mt-2">특정 로봇 제조사에 종속(Vendor Lock-in)되지 않고 이종 로봇(AMR·휴머노이드·다관절 암)을 단일 관제하는 표준 연동 구조입니다.</p>
+            </div>
+
+            <!-- 5계층 아키텍처 스택 -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+                <div class="lg:col-span-7 space-y-3">
+                    <div class="bg-gradient-to-r from-indigo-900 to-purple-900 text-white rounded-xl p-4 shadow-sm border border-indigo-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-purple-300">Layer 1 · Interaction Layer</span>
+                            <h4 class="text-base font-bold">SAP Joule Work &amp; Assistant</h4>
+                        </div>
+                        <p class="text-xs text-indigo-100 sm:text-right max-w-xs">자연어 대화 및 초개인화 관제 콕핏으로 전사 AI 에이전트 조율</p>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white rounded-xl p-4 shadow-sm border border-blue-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-blue-300">Layer 2 · Autonomous Suite</span>
+                            <h4 class="text-base font-bold">SAP S/4HANA · EWM · PaPM · Ariba</h4>
+                        </div>
+                        <p class="text-xs text-blue-100 sm:text-right max-w-xs">OEM ALC 서열 수신, 출고 창고작업(WT) 자동 생성, 실시간 원가 배부</p>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-sky-800 to-blue-800 text-white rounded-xl p-4 shadow-sm border border-sky-600 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-sky-300">Layer 3 · Physical AI Middleware</span>
+                            <h4 class="text-base font-bold">SAP BTP &amp; Embodied AI Agents</h4>
+                        </div>
+                        <p class="text-xs text-sky-100 sm:text-right max-w-xs">비즈니스 맥락 주입 및 VDA 5050 표준 JSON 프로토콜 변환</p>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-teal-800 to-emerald-800 text-white rounded-xl p-4 shadow-sm border border-teal-600 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-teal-300">Layer 4 · Multi-Fleet Control</span>
+                            <h4 class="text-base font-bold">통합 FMS 관제 엔진 (VDA 5050 호환)</h4>
+                        </div>
+                        <p class="text-xs text-teal-100 sm:text-right max-w-xs">AMR(이송)과 다관절/휴머노이드(핸들링) 이종 기종 동시 경로·충돌 관제</p>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-slate-800 to-slate-900 text-white rounded-xl p-4 shadow-sm border border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Layer 5 · Physical Execution</span>
+                            <h4 class="text-base font-bold">SLAM AMR + 3D 비전 로봇 핸들링</h4>
+                        </div>
+                        <p class="text-xs text-slate-300 sm:text-right max-w-xs">무인 서열 대차 자동 도킹·공대차 회수 및 H/L 지그 정밀 안착</p>
+                    </div>
+                </div>
+
+                <!-- VDA 5050 표준 페이로드 뷰어 -->
+                <div class="lg:col-span-5 bg-slate-900 rounded-2xl p-6 text-slate-200 border border-slate-800 shadow-md flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">STANDARD PROTOCOL: VDA 5050</span>
+                            <span class="text-xs text-slate-400">MQTT 초저지연 메시징</span>
+                        </div>
+                        <h4 class="text-base font-bold text-white mb-2">표준 로봇 제어 인터페이스 (Vendor Lock-in 해소)</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                            독일 자동차산업협회(VDA) 표준인 VDA 5050을 채택하여, 향후 다른 브랜드의 AMR이나 로봇 암을 추가 도입하더라도 SAP ERP/EWM 수정 없이 즉시 연결 가능합니다.
+                        </p>
+                        <div class="bg-slate-950 rounded-xl p-4 font-mono text-xs text-blue-300 overflow-x-auto border border-slate-800">
+<pre>// VDA 5050 Order Dispatch Payload (NVH 아산 PoC 예시)
+{
+  "orderId": "WT_NVH_ASAN_HL01_0042",
+  "orderUpdateId": 0,
+  "nodes": [
+    { "nodeId": "BUFFER_BIN_A01", "action": "pickUpFullCart" },
+    { "nodeId": "LINE_SIDE_HL_ST03", "action": "swapEmptyCart" }
+  ],
+  "priority": 1
+}</pre>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800 text-center text-xs">
+                        <div class="bg-slate-800/70 rounded-lg p-2">
+                            <div class="font-bold text-white">종속성 배제</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">복수 로봇사 혼용</div>
+                        </div>
+                        <div class="bg-slate-800/70 rounded-lg p-2">
+                            <div class="font-bold text-white">무선 무타공</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">LiDAR SLAM 주행</div>
+                        </div>
+                        <div class="bg-slate-800/70 rounded-lg p-2">
+                            <div class="font-bold text-white">실시간 정산</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">EWM 즉시 확정</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 인터랙티브 6단계 상세 물류·제조 실행 프로세스 -->
+            <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900">End-to-End 6단계 자율 물류·제조 실행 시뮬레이션</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">각 단계를 클릭하여 현장 센서부터 SAP 재고 전기까지의 데이터·물류 흐름을 확인하세요.</p>
+                    </div>
+                    <button onclick="runSimulation()" id="simBtn" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow transition flex items-center gap-2 self-start">
+                        <i class="fa-solid fa-play"></i> <span>전체 프로세스 자동 시연</span>
+                    </button>
+                </div>
+
+                <!-- 6단계 스텝 카드 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3" id="stepCards">
+                    <button onclick="selectStep(0)" class="step-card text-left p-4 rounded-xl border-2 border-blue-600 bg-blue-50/50 transition">
+                        <div class="text-xs font-extrabold text-blue-600 mb-1">STEP 01</div>
+                        <div class="font-bold text-sm text-slate-900">OEM 서열·잔량 감지</div>
+                        <div class="text-[11px] text-slate-500 mt-1">ALC 수신 &amp; 센서 트리거</div>
+                    </button>
+                    <button onclick="selectStep(1)" class="step-card text-left p-4 rounded-xl border border-slate-200 hover:border-blue-400 bg-white transition">
+                        <div class="text-xs font-extrabold text-slate-400 mb-1">STEP 02</div>
+                        <div class="font-bold text-sm text-slate-900">EWM 작업 자동 발령</div>
+                        <div class="text-[11px] text-slate-500 mt-1">Warehouse Task 생성</div>
+                    </button>
+                    <button onclick="selectStep(2)" class="step-card text-left p-4 rounded-xl border border-slate-200 hover:border-blue-400 bg-white transition">
+                        <div class="text-xs font-extrabold text-slate-400 mb-1">STEP 03</div>
+                        <div class="font-bold text-sm text-slate-900">AI 오케스트레이션</div>
+                        <div class="text-[11px] text-slate-500 mt-1">우선순위 &amp; VDA 5050 변환</div>
+                    </button>
+                    <button onclick="selectStep(3)" class="step-card text-left p-4 rounded-xl border border-slate-200 hover:border-blue-400 bg-white transition">
+                        <div class="text-xs font-extrabold text-slate-400 mb-1">STEP 04</div>
+                        <div class="font-bold text-sm text-slate-900">FMS 최적 배차</div>
+                        <div class="text-[11px] text-slate-500 mt-1">유휴 AMR 할당·경로 계산</div>
+                    </button>
+                    <button onclick="selectStep(4)" class="step-card text-left p-4 rounded-xl border border-slate-200 hover:border-blue-400 bg-white transition">
+                        <div class="text-xs font-extrabold text-slate-400 mb-1">STEP 05</div>
+                        <div class="font-bold text-sm text-slate-900">실물 도킹 &amp; 지그 안착</div>
+                        <div class="text-[11px] text-slate-500 mt-1">만재 대차 교체·공대차 회수</div>
+                    </button>
+                    <button onclick="selectStep(5)" class="step-card text-left p-4 rounded-xl border border-slate-200 hover:border-blue-400 bg-white transition">
+                        <div class="text-xs font-extrabold text-slate-400 mb-1">STEP 06</div>
+                        <div class="font-bold text-sm text-slate-900">실시간 완료 정산</div>
+                        <div class="text-[11px] text-slate-500 mt-1">EWM 확정 &amp; 재고(311) 차감</div>
+                    </button>
+                </div>
+
+                <!-- 선택된 스텝 상세 설명 패널 -->
+                <div id="stepDetail" class="mt-5 p-5 rounded-xl bg-slate-900 text-white flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <span id="stepBadge" class="inline-block px-2.5 py-0.5 rounded bg-blue-600 text-xs font-bold mb-1.5">STEP 01 · 트리거 계층</span>
+                        <h5 id="stepTitle" class="text-base sm:text-lg font-bold">완성차 OEM 서열 EDI 수신 및 라인사이드 안전 임계치(Min-level) 감지</h5>
+                        <p id="stepDesc" class="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
+                            완성차 OEM ALC/서열 EDI를 SAP S/4HANA로 수신하여 파트별 불출 서열 번호(Seq No)를 생성하고, 조립 라인 스테이션의 포토센서/PLC가 버퍼 재고 임계치 미만 하락을 실시간 감지합니다.
+                        </p>
+                    </div>
+                    <div class="shrink-0 bg-slate-800 px-4 py-3 rounded-xl border border-slate-700 text-xs">
+                        <div class="text-slate-400">핵심 연동 시스템</div>
+                        <div id="stepSystem" class="font-bold text-emerald-400 mt-0.5">SAP S/4HANA · MES · 현장 IoT 센서</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: 예상 투자비(CAPEX) & 확장 가치(원가·ESG) -->
+        <section id="investment" class="scroll-mt-24">
+            <div class="mb-8 border-b border-slate-200 pb-4">
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">06. Investment Options &amp; Extended Enterprise Value</span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">단계별 구축 예산(CAPEX) 옵션 및 재무·ESG 확장 가치</h3>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- CAPEX 옵션 비교 테이블 -->
+                <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                        <h4 class="font-bold text-slate-900 text-base">아산공장 파일럿(PoC) 구축 예상 비용 비교 (2026 기준)</h4>
+                        <span class="text-xs font-semibold text-blue-600">RaaS 구독형 선택 가능</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                            <thead>
+                                <tr class="bg-slate-100 border-b border-slate-200 text-slate-700 font-bold">
+                                    <th class="py-3 px-4">구분 항목</th>
+                                    <th class="py-3 px-4">세부 내역 및 산출 기준</th>
+                                    <th class="py-3 px-4 text-right bg-blue-50/60 text-blue-900">Option A<br><span class="text-[11px] font-normal">(AMR 물류 중심)</span></th>
+                                    <th class="py-3 px-4 text-right bg-indigo-50/60 text-indigo-900">Option B<br><span class="text-[11px] font-normal">(AMR+휴머노이드)</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr>
+                                    <td class="py-3 px-4 font-bold text-slate-900">AMR 이송 로봇</td>
+                                    <td class="py-3 px-4 text-slate-600">SLAM 500~800kg급 견인/리프팅 (대당 4.5~5천만)</td>
+                                    <td class="py-3 px-4 text-right font-semibold bg-blue-50/30">1.5억 (3대)</td>
+                                    <td class="py-3 px-4 text-right font-semibold bg-indigo-50/30">1.5억 (3대)</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-bold text-slate-900">휴머노이드/다관절</td>
+                                    <td class="py-3 px-4 text-slate-600">산업용 파일럿 1대 (양산 전환 시 4~6천만 수준)</td>
+                                    <td class="py-3 px-4 text-right text-slate-400 bg-blue-50/30">-</td>
+                                    <td class="py-3 px-4 text-right font-semibold bg-indigo-50/30">1.5억 (1대)</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-bold text-slate-900">통합 FMS/AI 엔진</td>
+                                    <td class="py-3 px-4 text-slate-600">VDA 5050 관제 패키지 + KinetIQ/Fleet 라이선스</td>
+                                    <td class="py-3 px-4 text-right font-semibold bg-blue-50/30">0.6억</td>
+                                    <td class="py-3 px-4 text-right font-semibold bg-indigo-50/30">0.9억</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-bold text-slate-900">SAP 연동 미들웨어</td>
+                                    <td class="py-3 px-4 text-slate-600">SAP EWM BTP 인터페이스 및 오케스트레이션 개발</td>
+                                    <td class="py-3 px-4 text-right font-semibold bg-blue-50/30">0.7억</td>
+                                    <td class="py-3 px-4 text-right font-semibold bg-indigo-50/30">0.9억</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-bold text-slate-900">대차·인프라 개조</td>
+                                    <td class="py-3 px-4 text-slate-600">스마트 대차 핀 개조, 산업용 Wi-Fi 6 무선망, 충전기</td>
+                                    <td class="py-3 px-4 text-right font-semibold bg-blue-50/30">0.4억</td>
+                                    <td class="py-3 px-4 text-right font-semibold bg-indigo-50/30">0.5억</td>
+                                </tr>
+                                <tr class="bg-slate-900 text-white font-bold">
+                                    <td class="py-3.5 px-4" colspan="2">합계 (초기 구축 예상 예산) <span class="text-xs font-normal text-slate-300 ml-1">※ 휴머노이드 월 구독(RaaS 400~600만) 전환 가능</span></td>
+                                    <td class="py-3.5 px-4 text-right text-blue-300 text-base">약 3.2억 원</td>
+                                    <td class="py-3.5 px-4 text-right text-emerald-300 text-base">약 5.3억 원</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 재무/원가 및 ESG 확장 가치 카드 -->
+                <div class="lg:col-span-5 space-y-5">
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">실시간 원가·수익성 분석 (SAP PaPM / SAC)</h4>
+                                <span class="text-xs text-slate-500">월말 수작업 원가 결산 탈피</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-600">
+                            <li>• 로봇·설비 작업 로그와 ERP 재무 데이터를 직결하여 <strong>라인·차종별 실시간 제조원가 및 수익 기여도</strong> 즉시 가시화</li>
+                            <li>• 관세 시나리오 및 혼류 생산 비중 변동에 따른 마진 시뮬레이션</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">ESG·제품 탄소발자국(PCF) 자동 추적</h4>
+                                <span class="text-xs text-slate-500">EU CBAM 및 Catena-X OEM 규제 선제 대응</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-600">
+                            <li>• 생산·물류 트랜잭션 단위 에너지 소비량 및 Scope 1~3 배출량 자동 산출(SAP SFM/SCT)</li>
+                            <li>• 친환경 소재 프리미엄 가격(15~30%) 확보 및 글로벌 OEM 데이터 교환 표준 준수</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: 즉시 실행 계획 (아산공장 선실사 -> SMATEC 2026 출장 및 로드맵) -->
+        <section id="action-plan" class="scroll-mt-24">
+            <div class="mb-8 border-b border-slate-200 pb-4">
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">07. Immediate Action Plan &amp; Roadmap</span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">실행 계획: 선(先) 아산 현장 실사 ➔ 후(後) SMATEC 2026 파트너 검증</h3>
+                <p class="text-sm text-slate-600 mt-2">
+                    <strong>“선제적 기술 센싱과 현장 실증을 통한 자율제조 돌파구 마련”</strong> — 현장의 물리적 제약 스펙을 먼저 확보한 뒤 전시·컨퍼런스에 참가하여 당사에 즉각 적용 가능한 솔루션 공급사와 정밀 견적을 확정합니다.
+                </p>
+            </div>
+
+            <!-- 1박 2일 집중 출장 실행 타임라인 -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-10">
+                <div class="bg-nvh-900 px-6 py-4 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-check text-blue-400"></i>
+                        <h4 class="font-bold text-base">사전 현장 실사 및 기술 검증 출장 계획 (2026.11.18 ~ 11.19, 1박 2일 집중안)</h4>
+                    </div>
+                    <span class="text-xs bg-blue-600 px-3 py-1 rounded-full font-semibold">수행: ICT기획팀 황재욱 매니저</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+                    <!-- 1일차 -->
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-lg bg-blue-100 text-blue-800 font-extrabold text-xs">1일차 · 11월 18일(수)</span>
+                            <span class="text-xs font-bold text-slate-500">울산 ➔ NOS 아산공장 ➔ 수원</span>
+                        </div>
+                        <h5 class="text-base font-bold text-slate-900 mb-3">① NOS 아산공장 H/L 라인 정밀 실측 및 As-Is 스펙 도출</h5>
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600">
+                            <li class="flex items-start gap-2">
+                                <span class="font-bold text-blue-600 shrink-0">10:30~12:00</span>
+                                <span><strong>레이아웃 및 물류 동선 실측:</strong> H/L 성형·조립 라인사이드 통로 폭, 바닥 평탄도, AMR 회전 반경, 적재 버퍼 면적 측정</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-bold text-blue-600 shrink-0">13:00~15:30</span>
+                                <span><strong>인프라·데이터 환경 진단:</strong> 서열 대차 하부 결착 핀 구조, 라인 센서 설치 위치, PLC 통신 방식, MES 실적 차감 시점 및 Wi-Fi 음영 구역 점검</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-bold text-blue-600 shrink-0">15:30~18:00</span>
+                                <span>현장 실측 기반 <strong>‘업체 제시용 기술 요구 스펙 시트’</strong> 정리 후 경기 수원으로 이동</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 2일차 -->
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-extrabold text-xs">2일차 · 11월 19일(목)</span>
+                            <span class="text-xs font-bold text-slate-500">수원컨벤션센터(SMATEC) ➔ 울산</span>
+                        </div>
+                        <h5 class="text-base font-bold text-slate-900 mb-3">② 실측 데이터 기반 파트너 부스 상담 및 컨퍼런스 세션 검증</h5>
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600">
+                            <li class="flex items-start gap-2">
+                                <span class="font-bold text-emerald-600 shrink-0">09:30~12:00</span>
+                                <span><strong>SMATEC 2026 타깃 부스 미팅:</strong> VDA 5050 지원 SLAM AMR 및 통합 FMS 공급사 대상 아산 대차 규격·통로폭 제시, 도킹 가능 기종 및 견적/납기 타진</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-bold text-emerald-600 shrink-0">13:00~16:00</span>
+                                <span><strong>AI자율제조혁신 컨퍼런스 참석:</strong> ‘다관절 로봇 핸드 활용사례’, ‘3D 비전 스마트 자동화’ 세션 청취 및 H/L 비정형 자재 파지 PoC 적용성 엔지니어 질의</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-bold text-emerald-600 shrink-0">16:00~22:30</span>
+                                <span>최종 파트너 후보군 2~3개사 압축 정리 후 울산 복귀 (결과 보고서 작성 착수)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3단계 중장기 추진 로드맵 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl p-6 border-t-4 border-t-blue-600 border border-slate-200 shadow-sm">
+                    <span class="text-xs font-extrabold text-blue-600 uppercase">PHASE 1 (1 ~ 3개월)</span>
+                    <h4 class="text-lg font-bold text-slate-900 mt-1 mb-3">아산공장 파일럿 검증 (PoC)</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-600">
+                        <li>• H/L 1개 대표 라인 선정 (SLAM AMR 2~3대 투입)</li>
+                        <li>• 스마트 서열 대차 자동 도킹·공대차 회수 실증</li>
+                        <li>• 비정형 자재 다관절/휴머노이드 파지 테스트</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border-t-4 border-t-indigo-600 border border-slate-200 shadow-sm">
+                    <span class="text-xs font-extrabold text-indigo-600 uppercase">PHASE 2 (4 ~ 7개월)</span>
+                    <h4 class="text-lg font-bold text-slate-900 mt-1 mb-3">시스템 고도화 및 EWM 직결</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-600">
+                        <li>• SAP EWM ↔ BTP ↔ VDA 5050 양방향 실시간 연동</li>
+                        <li>• 도착 센서·비전 기반 자동 Confirm-back 구현</li>
+                        <li>• AMR 이송과 공정 로봇 핸들링 협동 작업 연계</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border-t-4 border-t-emerald-600 border border-slate-200 shadow-sm">
+                    <span class="text-xs font-extrabold text-emerald-600 uppercase">PHASE 3 (8개월 이후)</span>
+                    <h4 class="text-lg font-bold text-slate-900 mt-1 mb-3">글로벌 거점 표준 수평 전개</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-600">
+                        <li>• <strong>북미 조지아 공장</strong> 및 국내 주요 생산거점 확산</li>
+                        <li>• SAP PaPM 실시간 원가 및 Catena-X 탄소 추적 통합</li>
+                        <li>• 전 공정 무인 자율 물류·조립 표준 팩토리 완성</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="bg-slate-950 text-slate-400 py-8 border-t border-slate-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <span class="font-bold text-white">NVH KOREA · NBTS ICT기획팀</span>
+                <span class="mx-2">|</span>
+                <span>피지컬 AI 기반 지능형 제조·물류 자율운영 마스터플랜</span>
+            </div>
+            <div>
+                Reference: Martur Fompak International (MFI) &amp; 2027 SAP Industry POV
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 6단계 프로세스 시뮬레이션 데이터
+        const stepsData = [
+            {
+                badge: "STEP 01 · 트리거 계층",
+                title: "완성차 OEM 서열 EDI 수신 및 라인사이드 안전 임계치(Min-level) 감지",
+                desc: "완성차 OEM ALC/서열 EDI를 SAP S/4HANA로 수신하여 파트별 불출 서열 번호(Seq No)를 생성하고, 조립 라인 스테이션의 포토센서/PLC가 버퍼 재고 임계치 미만 하락을 실시간 감지합니다.",
+                system: "SAP S/4HANA · MES · 현장 IoT 센서"
+            },
+            {
+                badge: "STEP 02 · 창고 작업 발령",
+                title: "SAP EWM 출고 창고작업(Warehouse Task) 자동 발번",
+                desc: "임계치 도달 시그널이 전달되면 SAP EWM(WMS)에서 작업자 개입 없이 출고 창고작업(WT)을 자동 생성하고 최적의 불출 버퍼 빈(Bin)을 지정합니다.",
+                system: "SAP EWM (Extended Warehouse Management)"
+            },
+            {
+                badge: "STEP 03 · AI 오케스트레이션",
+                title: "Physical AI Middleware 우선순위 산정 및 VDA 5050 변환",
+                desc: "SAP BTP 미들웨어가 공장 내 혼잡도, 로봇 배터리/가용 상태, 라인 긴급도를 연산하여 작업 우선순위(Priority)를 부여하고 표준 VDA 5050 JSON 메시지로 변환합니다.",
+                system: "SAP BTP · Embodied AI Middleware"
+            },
+            {
+                badge: "STEP 04 · 멀티플릿 관제 분배",
+                title: "통합 FMS 관제 엔진의 유휴 AMR 자동 할당 및 최적 경로 생성",
+                desc: "FMS 관제 시스템이 가장 근접한 유휴 SLAM AMR을 자동 배차하고, 동적 장애물 및 작업자 회피를 포함한 최단 이동 경로를 실시간 전송합니다.",
+                system: "Multi-Fleet Management System (VDA 5050)"
+            },
+            {
+                badge: "STEP 05 · 물리적 이송 및 지그 안착",
+                title: "SLAM AMR 무인 대차 자동 도킹·교체 및 비정형 자재 로딩",
+                desc: "AMR이 버퍼 창고의 만재 서열 대차를 자동 체결하여 라인사이드에 안착시키고 배출된 공대차를 회수합니다. 필요 시 3D 비전 로봇이 H/L·패드류를 지그에 정밀 로딩합니다.",
+                system: "SLAM AMR · 3D 비전 다관절/휴머노이드"
+            },
+            {
+                badge: "STEP 06 · 실시간 완료 정산",
+                title: "도착 센서/비전 식별 즉시 EWM 작업 확정 및 S/4HANA 재고 전기",
+                desc: "도착 센서 및 비전 바코드 인식이 완료되면 VDA 5050 State 보고를 통해 EWM 창고작업을 자동 완료(Confirm)하고 S/4HANA 재고 이동(Move Type 261/311)을 실시간 전기합니다.",
+                system: "SAP EWM · SAP S/4HANA (Closed-loop)"
+            }
+        ];
+
+        let simInterval = null;
+
+        function selectStep(index) {
+            const cards = document.querySelectorAll('.step-card');
+            cards.forEach((card, idx) => {
+                const label = card.querySelector('div:first-child');
+                if (idx === index) {
+                    card.className = "step-card text-left p-4 rounded-xl border-2 border-blue-600 bg-blue-50/60 shadow-sm transition";
+                    label.className = "text-xs font-extrabold text-blue-600 mb-1";
+                } else {
+                    card.className = "step-card text-left p-4 rounded-xl border border-slate-200 hover:border-blue-400 bg-white transition";
+                    label.className = "text-xs font-extrabold text-slate-400 mb-1";
+                }
+            });
+
+            const data = stepsData[index];
+            document.getElementById('stepBadge').textContent = data.badge;
+            document.getElementById('stepTitle').textContent = data.title;
+            document.getElementById('stepDesc').textContent = data.desc;
+            document.getElementById('stepSystem').textContent = data.system;
+        }
+
+        function runSimulation() {
+            if (simInterval) {
+                clearInterval(simInterval);
+                simInterval = null;
+            }
+            let current = 0;
+            selectStep(current);
+            const btn = document.getElementById('simBtn');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>프로세스 시연 중...</span>';
+
+            simInterval = setInterval(() => {
+                current++;
+                if (current >= stepsData.length) {
+                    clearInterval(simInterval);
+                    simInterval = null;
+                    btn.innerHTML = '<i class="fa-solid fa-play"></i> <span>전체 프로세스 자동 시연</span>';
+                    return;
+                }
+                selectStep(current);
+            }, 1800);
+        }
+
+        // 아산공장 디지털 레이아웃 구역 상세 데이터
+        const zoneData = {
+            zoneC: {
+                badge: "ZONE C · 핵심 PoC 후보 구역",
+                badgeClass: "px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800 text-xs font-extrabold",
+                title: "[C동] 펀칭 · 조립 · 완제품 출하 구역",
+                desc: "B동(감싸기·워터젯·트리밍)에서 가공된 반제품이 집결하여 최종 조립(71AS1, 72AS1, 72PA1) 및 OEM 직서열(JIS)·비서열 출하가 이루어지는 아산공장 물류 핵심 구간입니다.",
+                lines: [
+                    "• <strong>71PN1 (펀칭):</strong> BD, DE 차종 / 하나정보 P/G + MES I/F",
+                    "• <strong>71AS1 (조립):</strong> BD, DE 완제품 조립 실적",
+                    "• <strong>72AS1 (조립):</strong> IGPE, DL3 (워터젯 품번 연계 조립)",
+                    "• <strong>72PA1 (펀칭/조립):</strong> JF 차종 연동생산"
+                ],
+                check: "① B동(70CO1 감싸기) ➔ C동(71·72 조립라인) 간 반제품 서열 대차 AMR 무인 이송 동선 및 통로 폭 실측<br>② 완제품 출하장 파렛트(PLT) 적재 및 JIS 이종체크 구간 무인화 연계"
+            },
+            zoneB: {
+                badge: "ZONE B · 중앙 가공·감싸기 허브",
+                badgeClass: "px-2.5 py-1 rounded-md bg-amber-100 text-amber-800 text-xs font-extrabold",
+                title: "[B동] 압착/트리밍 · 컷팅 · 워터젯 · 감싸기 구역",
+                desc: "A동에서 성형된 반제품을 차종별 사양에 맞게 트리밍·컷팅·워터젯 가공하고 전차종 통합 감싸기(70CO1)를 수행하는 공정 허브입니다. 하단에 110평 규모의 구 IG 셔틀라인(Future Area) 여유 공간이 위치합니다.",
+                lines: [
+                    "• <strong>53·54·55TR1:</strong> 1·2·3라인 압착/트리밍 공정",
+                    "• <strong>57CT1 (컷팅):</strong> IG, HM, JF 차종 재단",
+                    "• <strong>58WJ1 (워터젯):</strong> IGPE, DL3 정밀 가공 (PLC 연계)",
+                    "• <strong>70CO1 (감싸기):</strong> 전차종 통합 · PDA 기반 LOT 바코드 출력"
+                ],
+                check: "① 70CO1 감싸기 완료 대차의 C동 조립라인 무인 공급 트리거 설계<br>② 하단 구 IG 셔틀라인(110평)을 활용한 AMR 충전 스테이션 및 중간 서열 버퍼 스테이징 구역 구축 검토"
+            },
+            zoneA: {
+                badge: "ZONE A · 초기 성형 및 투입 구역",
+                badgeClass: "px-2.5 py-1 rounded-md bg-blue-100 text-blue-800 text-xs font-extrabold",
+                title: "[A동] 성형(프레스) · 트리밍 · 시작실 구역",
+                desc: "주출입구 인접 구역으로 51·52 성형 프레스 라인과 56 트리밍 라인이 배치되어 있습니다. 성형 완료 제품은 개별 바코드 출력 없이 파렛트(PLT) 단위 식별표를 부착하여 관리합니다.",
+                lines: [
+                    "• <strong>51PU1 / 51PU2 (성형):</strong> 프레스 1·2호기 (PLT 식별표 발행)",
+                    "• <strong>52PU1 / 52PU2 (성형):</strong> 프레스 1·2호기 (PLT 식별표 발행)",
+                    "• <strong>56TR1 (트리밍):</strong> 4라인 트리밍 공정",
+                    "• <strong>인접 시설:</strong> 성형품재고 창고, 시작실, 현장 사무실"
+                ],
+                check: "① 성형 프레스 배출 파렛트(PLT)의 중량·규격 확인 및 고하중(500~800kg급) 리프팅 AMR 적용성 검증<br>② 주출입구 인근 지게차·차량 교차 구간의 3D 비전 안전 회피 센서 요건 정의"
+            },
+            zoneD: {
+                badge: "ZONE D · 증축동 2F (전용 라인)",
+                badgeClass: "px-2.5 py-1 rounded-md bg-purple-100 text-purple-800 text-xs font-extrabold",
+                title: "[증축동 2F / A동 2층] HM 차종 전용 생산·출하 구역",
+                desc: "본관 좌측에 연결된 증축동 2층 구역으로 HM 차종의 감싸기(73CO1), 펀칭/조립(73PA1), 자재적재장 및 완제품 출하장이 독립 구성되어 있습니다.",
+                lines: [
+                    "• <strong>73CO1 (감싸기):</strong> HM 전용 감싸기 공정 (PDA 작업)",
+                    "• <strong>73PA1 (펀칭/조립):</strong> HM 전용 펀칭·조립 (단말기 작업)",
+                    "• <strong>부대 시설:</strong> 좌·우 자재적재장 및 HM 완제품 출하장"
+                ],
+                check: "① 1단계(1F C동 중심) PoC 완료 후 2단계 확산 시 본관 ↔ 증축동 2F 간 화물 리프트/연결 통로 AMR 연동 가능 여부 사전 점검"
+            },
+            warehouse: {
+                badge: "BUFFER ZONE · 입고 및 버퍼 창고",
+                badgeClass: "px-2.5 py-1 rounded-md bg-sky-100 text-sky-800 text-xs font-extrabold",
+                title: "상단 원자재 · 반제품 적재장 및 창고 구역",
+                desc: "외부 협력사(NVH-K 등) 반제품 입고 및 A동 성형 완료 파렛트가 대기하는 상단 자재적재장입니다. 원창(자재창고)과 현창(현장창고)이 분리 운영됩니다.",
+                lines: [
+                    "• <strong>주요 기능:</strong> 수입검사 합격 자재 입고, 반제품 적재 및 불출 대기",
+                    "• <strong>개선 포인트:</strong> 납입카드 수동 스캔 불출 ➔ AMR 자동 픽업 시 실시간 재고 차감"
+                ],
+                check: "① 버퍼 창고 랙/대차 대기열 레이아웃과 EWM/MES 출고 지시(Warehouse Task) 매핑 구조 설계<br>② 선입선출(FIFO) 보장을 위한 대차 위치(Bin) 식별 방식 확정"
+            }
+        };
+
+        function selectZone(zoneKey) {
+            const z = zoneData[zoneKey];
+            if (!z) return;
+            const badge = document.getElementById('zoneBadge');
+            badge.className = z.badgeClass;
+            badge.textContent = z.badge;
+            document.getElementById('zoneTitle').textContent = z.title;
+            document.getElementById('zoneDesc').textContent = z.desc;
+            document.getElementById('zoneLines').innerHTML = z.lines.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('zoneVendorCheck').innerHTML = z.check;
+        }
+
+        // SVG 레이어 토글 (AMR 동선 / 단말기 마커)
+        let layerState = { amr: true, devices: true };
+        function toggleLayoutLayer(layer) {
+            layerState[layer] = !layerState[layer];
+            if (layer === 'amr') {
+                const el = document.getElementById('layerAmr');
+                const btn = document.getElementById('btnLayerAmr');
+                el.style.display = layerState.amr ? 'inline' : 'none';
+                btn.className = layerState.amr 
+                    ? "px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-semibold shadow-sm transition flex items-center gap-1.5"
+                    : "px-3 py-1.5 rounded-lg bg-slate-700 text-slate-300 font-semibold transition flex items-center gap-1.5";
+            } else if (layer === 'devices') {
+                const el = document.getElementById('layerDevices');
+                const btn = document.getElementById('btnLayerDevices');
+                el.style.display = layerState.devices ? 'inline' : 'none';
+                btn.className = layerState.devices 
+                    ? "px-3 py-1.5 rounded-lg bg-blue-600 text-white font-semibold shadow-sm transition flex items-center gap-1.5"
+                    : "px-3 py-1.5 rounded-lg bg-slate-700 text-slate-300 font-semibold transition flex items-center gap-1.5";
+            }
+        }
+
+        // 업체 배포용 기술 명세 탭 전환
+        function switchSpecTab(tabId) {
+            document.querySelectorAll('.spec-tab-panel').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('.spec-tab-btn').forEach(b => {
+                b.className = "spec-tab-btn px-4 py-2.5 rounded-t-xl text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900";
+            });
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).className = "spec-tab-btn px-4 py-2.5 rounded-t-xl text-xs sm:text-sm font-bold bg-white text-blue-700 border-t border-x border-slate-200 -mb-px";
+        }
+
+ 	// 유튜브 오류 153 방지용 팝업 및 인라인 전환 함수
+        function openYoutubePopup() {
+            const url = "https://www.youtube.com/watch?v=1K1phiQCftY&t=1s";
+            const width = 960;
+            const height = 560;
+            const left = (window.screen.width - width) / 2;
+            const top = (window.screen.height - height) / 2;
+            const popup = window.open(url, "MFI_SAP_POC_VIDEO", `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes`);
+            if (!popup) {
+                window.open(url, "_blank", "noopener,noreferrer");
+            }
+        }
+
+        function tryInlineEmbed() {
+            const container = document.getElementById('videoContainer');
+            container.innerHTML = `
+                <iframe 
+                    class="w-full h-full"
+                    src="https://www.youtube-nocookie.com/embed/1K1phiQCftY?autoplay=1&rel=0" 
+                    title="Martur Fompak International x SAP Embodied AI Proof of Concept"
+                    frameborder="0" 
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            `;
+        }
+    </script>
+</body>
+</html>
